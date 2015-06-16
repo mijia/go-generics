@@ -117,3 +117,27 @@ func SetDiff_StringStringMap(a, b map[string]string) map[string]string {
 	}
 	return diff
 }
+
+func Clone_Int64Slice(a []int64) []int64 {
+	b := make([]int64, len(a))
+	copy(b, a)
+	return b
+}
+
+func Clone_StringSlice(a []string) []string {
+	b := make([]string, len(a))
+	copy(b, a)
+	return b
+}
+
+func Clone_IntSlice(a []int) []int {
+	b := make([]int, len(a))
+	copy(b, a)
+	return b
+}
+
+func Clone_Float64Slice(a []float64) []float64 {
+	b := make([]float64, len(a))
+	copy(b, a)
+	return b
+}

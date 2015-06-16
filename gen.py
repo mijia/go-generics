@@ -44,6 +44,14 @@ func SetDiff_{{ typeA.capitalize() }}{{ typeB.capitalize() }}Map(a, b map[{{ typ
 }
 """
 
+clone_items = """
+func Clone_{{ typeA.capitalize() }}Slice(a []{{ typeA }}) []{{ typeA }} {
+    b := make([]{{ typeA }}, len(a))
+    copy(b, a)
+    return b
+}
+"""
+
 code_fragments = [
     {
         "template": Template(unique_items),
@@ -56,6 +64,10 @@ code_fragments = [
     {
         "template": Template(set_diff),
         "types": [("string", "string")],
+    },
+    {
+        "template": Template(clone_items),
+        "types": ["int64", "string", "int", "float64"],
     },
 ]
 
