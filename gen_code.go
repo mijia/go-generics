@@ -141,3 +141,11 @@ func Clone_Float64Slice(a []float64) []float64 {
 	copy(b, a)
 	return b
 }
+
+func Clone_StringStringMap(a map[string]string) map[string]string {
+	b := make(map[string]string)
+	for k, v := range a {
+		b[k] = v
+	}
+	return b
+}

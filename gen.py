@@ -52,6 +52,16 @@ func Clone_{{ typeA.capitalize() }}Slice(a []{{ typeA }}) []{{ typeA }} {
 }
 """
 
+clone_maps = """
+func Clone_{{ typeA.capitalize() }}{{ typeB.capitalize() }}Map(a map[{{ typeA}}]{{ typeB }}) map[{{ typeA }}]{{ typeB }} {
+    b := make(map[{{ typeA }}]{{ typeB }})
+    for k, v := range a {
+        b[k] = v
+    }
+    return b
+}
+"""
+
 code_fragments = [
     {
         "template": Template(unique_items),
@@ -68,6 +78,10 @@ code_fragments = [
     {
         "template": Template(clone_items),
         "types": ["int64", "string", "int", "float64"],
+    },
+    {
+        "template": Template(clone_maps),
+        "types": [("string", "string")],
     },
 ]
 
