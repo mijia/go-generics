@@ -108,6 +108,18 @@ func Equal_Float64Slice(a, b []float64) bool {
 	return true
 }
 
+func Equal_StringStringMap(a, b map[string]string) bool {
+	if len(a) != len(b) {
+		return false
+	}
+	for k := range a {
+		if a[k] != b[k] {
+			return false
+		}
+	}
+	return true
+}
+
 func SetDiff_StringStringMap(a, b map[string]string) map[string]string {
 	diff := make(map[string]string)
 	for k, v := range a {

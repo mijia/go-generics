@@ -32,6 +32,20 @@ func Equal_{{ typeA.capitalize() }}Slice(a, b []{{ typeA }}) bool {
 }
 """
 
+eq_maps = """
+func Equal_{{ typeA.capitalize() }}{{ typeB.capitalize() }}Map(a, b map[{{typeA}}]{{typeB}}) bool {
+    if len(a) != len(b) {
+        return false
+    }
+    for k := range a {
+        if a[k] != b[k] {
+            return false
+        }
+    }
+    return true
+}
+"""
+
 set_diff = """
 func SetDiff_{{ typeA.capitalize() }}{{ typeB.capitalize() }}Map(a, b map[{{ typeA }}]{{ typeB }}) map[{{ typeA }}]{{ typeB }} {
     diff := make(map[{{ typeA }}]{{ typeB }})
@@ -70,6 +84,10 @@ code_fragments = [
     {
         "template": Template(eq_items),
         "types": ["int64", "string", "int", "float64"],
+    },
+    {
+        "template": Template(eq_maps),
+        "types": [("string", "string")],
     },
     {
         "template": Template(set_diff),
